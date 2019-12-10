@@ -5,4 +5,5 @@ cd ../
 git clone https://github.com/LukeSmithxyz/st.git
 makepkg -si
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-echo "i3" > ~/.xinitrc
+touch /home/thnikk/.xinitrc
+echo "i3" > /home/thnikk/.xinitrc
