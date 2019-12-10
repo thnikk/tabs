@@ -15,6 +15,6 @@ swapon $SWAP
 pacman -Sy --noconfirm archlinux-keyring
 pacstrap /mnt base base-devel linux linux-firmware vim zsh dhcpcd xorg-server xorg xorg-xinit sudo noto-fonts git i3-gaps i3status dmenu feh unzip unrar tmux xclip mpd ncmpcpp networkmanager network-manager-applet
 genfstab -U -p /mnt >> /mnt/etc/fstab
-cp chroot.sh /mnt/chroot.sh && arch-chroot /mnt bash "chroot.sh $ROOT" && rm /mnt/chroot.sh
+cp chroot.sh /mnt/chroot.sh && arch-chroot /mnt bash chroot.sh && rm /mnt/chroot.sh
 
 umount $ROOT $BOOT
