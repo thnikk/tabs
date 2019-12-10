@@ -5,7 +5,8 @@ passwd
 # PROMPT FOR USERNAME
 useradd -mg users -G wheel,storage,power -s /usr/bin/zsh thnikk
 passwd thnikk
-visudo
+#visudo
+sudo sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
 # PROMPT FOR HOSTNAME
 echo "archvm" > /etc/hostname
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
