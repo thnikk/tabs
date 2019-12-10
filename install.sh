@@ -1,9 +1,7 @@
 #!/bin/bash
-DRIVE=$1
-
-ROOT=/dev/$DRIVE3
-SWAP=/dev/$DRIVE2
-BOOT=/dev/$DRIVE1
+ROOT=/dev/vda3
+SWAP=/dev/vda2
+BOOT=/dev/vda1
 
 mkfs.ext4 $ROOT
 mkswap $SWAP
