@@ -1,5 +1,6 @@
 #!/bin/bash
-ROOT=/dev/vda3
+ROOT=/dev/$(cat /rootPart |tr -d '\n')3
+echo $ROOT
 
 echo "Setting root password." 
 passwd

@@ -1,7 +1,12 @@
 #!/bin/bash
-ROOT=/dev/vda3
-SWAP=/dev/vda2
-BOOT=/dev/vda1
+lsblk
+echo "Which drive would you like to install Arch to?"
+echo "Warning: This will overwrite the entire drive."
+read DRIVE
+
+ROOT=/dev/$DRIVE3
+SWAP=/dev/$DRIVE2
+BOOT=/dev/$DRIVE1
 
 echo "Formatting partitions."
 mkfs.ext4 $ROOT
@@ -21,4 +26,5 @@ echo "Creating FS Table."
 rm /mnt/etc/fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab
 echo "Copying install scripts to root fs and entering chroot."
+echo "/dev/$DRIVE3" > /mnt/rootPart
 cp chroot.sh /mnt && cp user.sh /mnt && arch-chroot /mnt bash chroot.sh
