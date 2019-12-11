@@ -11,7 +11,7 @@ echo "exec bspwm" > /home/thnikk/.xinitrc
 echo "#exec i3" >> /home/thnikk/.xinitrc
 # Install dotfiles
 git clone https://github.com/thnikk/dotfiles.git
+rm -rf dotfiles/.git
 cp -r dotfiles/. .
-rm -rf dotfiles
 # Enable mpd
 systemctl --user enable mpd
