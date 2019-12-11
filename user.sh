@@ -4,9 +4,11 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 # Install aur packages
-yay -S flat-remix polybar ttf-material-design-icons oh-my-zsh
+yay -S --no-confirm flat-remix polybar ttf-material-design-icons
+# Install oh my zsh
+curl -Lo install.sh https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+sh install.sh --unattended
 # Create xinitrc
-touch /home/thnikk/.xinitrc
 echo "exec bspwm" > /home/thnikk/.xinitrc
 # Just in case
 echo "#exec i3" >> /home/thnikk/.xinitrc

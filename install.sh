@@ -20,7 +20,7 @@ swapon $SWAP
 
 echo "Installing system."
 pacman -Sy --noconfirm archlinux-keyring
-pacstrap /mnt base base-devel linux linux-firmware neovim zsh dhcpcd xorg-server xorg xorg-xinit sudo noto-fonts git feh unzip unrar tmux xclip mpd ncmpcpp networkmanager network-manager-applet arc-gtk-theme adobe-source-han-sans-otc-fonts bspwm rofi dunst udiskie xorg-xsetroot xorg-xinput arandr ttf-fira-code zsh-autosuggestions zsh-syntax-highlighting nautilus
+pacstrap /mnt base base-devel linux linux-firmware neovim zsh dhcpcd xorg-server xorg xorg-xinit sudo noto-fonts git feh unzip unrar tmux xclip mpd ncmpcpp networkmanager network-manager-applet arc-gtk-theme adobe-source-han-sans-otc-fonts bspwm sxhkd rofi dunst udiskie xorg-xsetroot xorg-xinput arandr ttf-fira-code zsh-autosuggestions zsh-syntax-highlighting nautilus kitty
 echo "Creating FS Table."
 rm /mnt/etc/fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab
