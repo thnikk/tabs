@@ -20,8 +20,8 @@ swapon $SWAP
 
 echo "Installing system."
 pacman -Sy --noconfirm archlinux-keyring
-pacstrap /mnt base base-devel linux linux-firmware vim zsh dhcpcd xorg-server xorg xorg-xinit sudo noto-fonts git i3-gaps i3status dmenu feh unzip unrar tmux xclip mpd ncmpcpp networkmanager network-manager-applet
-echo "Creating FS Table." 
+pacstrap /mnt base base-devel linux linux-firmware neovim zsh dhcpcd xorg-server xorg xorg-xinit sudo noto-fonts git feh unzip unrar tmux xclip mpd ncmpcpp networkmanager network-manager-applet arch-gtk-theme adobe-source-han-sans-otc-fonts bspwm rofi dunst udiskie xorg-xsetroot xorg-xinput arandr
+echo "Creating FS Table."
 rm /mnt/etc/fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab
 echo "Copying install scripts to root fs and entering chroot."
