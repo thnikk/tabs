@@ -1,8 +1,11 @@
 #!/bin/bash
+lsblk
+"echo "Enter drive selection."
+read DRIVE
 
-ROOT=/dev/vda3
-SWAP=/dev/vda2
-BOOT=/dev/vda1
+ROOT=/dev/$(echo $DRIVE)3
+SWAP=/dev/$(echo $DRIVE)2
+BOOT=/dev/$(echo $DRIVE)1
 
 echo "Formatting partitions."
 mkfs.ext4 $ROOT
@@ -22,5 +25,5 @@ echo "Creating FS Table."
 rm /mnt/etc/fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab
 echo "Copying install scripts to root fs and entering chroot."
-echo "/dev/$DRIVE3" > /mnt/rootPart
+echo "$ROOT" > /mnt/rootPart
 cp chroot.sh /mnt && cp user.sh /mnt && arch-chroot /mnt bash chroot.sh
