@@ -1,12 +1,8 @@
 #!/bin/bash
-lsblk
-echo "Which drive would you like to install Arch to?"
-echo "Warning: This will overwrite the entire drive."
-read DRIVE
 
-ROOT=/dev/$DRIVE3
-SWAP=/dev/$DRIVE2
-BOOT=/dev/$DRIVE1
+ROOT=/dev/vda3
+SWAP=/dev/vda2
+BOOT=/dev/vda1
 
 echo "Formatting partitions."
 mkfs.ext4 $ROOT
