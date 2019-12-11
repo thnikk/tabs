@@ -1,6 +1,6 @@
 #!/bin/bash
 lsblk
-"echo "Enter drive selection."
+echo "Enter drive selection."
 read DRIVE
 
 ROOT=/dev/$(echo $DRIVE)3
