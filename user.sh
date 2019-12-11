@@ -13,3 +13,4 @@ echo "#exec i3" >> /home/thnikk/.xinitrc
 # Install dotfiles
 git clone https://github.com/thnikk/dotfiles.git
 cp -r dotfiles/. .
+rm -rf dotfiles
