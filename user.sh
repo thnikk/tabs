@@ -6,9 +6,8 @@ makepkg -si
 # Install aur packages
 yay -S flat-remix polybar ttf-material-design-icons
 # Create xinitrc
-echo "exec bspwm" > /home/thnikk/.xinitrc
-# Just in case
-echo "#exec i3" >> /home/thnikk/.xinitrc
+echo "exec i3
+#exec bspwm" > /home/thnikk/.xinitrc
 # Install dotfiles
 git clone https://github.com/thnikk/dotfiles.git
 rm -rf dotfiles/.git

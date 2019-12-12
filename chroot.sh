@@ -1,12 +1,12 @@
 #!/bin/bash
 ROOT=$(cat /rootPart | tr -d '\n')
 
-echo "Setting root password." 
+echo "Setting root password."
 passwd
 # PROMPT FOR USERNAME
 echo "Please enter your desired username. "
 read USER
-useradd -mg users -G wheel,storage,power -s /usr/bin/zsh $USER 
+useradd -mg users -G wheel,storage,power -s /usr/bin/zsh $USER
 echo "Setting user password."
 passwd $USER
 #visudo
@@ -45,4 +45,4 @@ echo "initrd /initramfs-linux.img" >> /boot/loader/entries/arch.conf
 echo "options root=PARTUUID=$(blkid -s PARTUUID -o value $ROOT | tr -d '\n') rw" >> /boot/loader/entries/arch.conf
 
 chmod +x /user.sh
-su -c "/user.sh" - thnikk 
+su -c "/user.sh" - thnikk
