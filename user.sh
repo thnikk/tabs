@@ -4,7 +4,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 # Install aur packages
-yay -S flat-remix polybar ttf-material-design-icons
+yay -S flat-remix polybar ttf-material-design-icons antigen-git
 # Create xinitrc
 echo "exec i3
 #exec bspwm" > /home/thnikk/.xinitrc
