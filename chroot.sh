@@ -45,4 +45,4 @@ echo "initrd /initramfs-linux.img" >> /boot/loader/entries/arch.conf
 echo "options root=PARTUUID=$(blkid -s PARTUUID -o value $ROOT | tr -d '\n') rw" >> /boot/loader/entries/arch.conf
 
 chmod +x /user.sh
-su -c "/user.sh" - $(users)
+su -c "/user.sh" - $USER
