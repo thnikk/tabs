@@ -15,15 +15,21 @@ sudo sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /et
 echo "Please enter your desired hostname for the machine: "
 read HOSTNAME
 echo "$HOSTNAME" > /etc/hostname
+# Set locale stuff
 echo "Setting locale."
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 echo "en_US ISO-8859-1" >> /etc/locale.gen
 export LANG=en_US.UTF-8
 locale-gen
+# Set timezone
 echo "Setting timezone."
 ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+# Set clock to utc
 hwclock --systohc --utc
+# Set makeflags
+sed -i '/MAKEFLAGS/c\MAKEFLAGS="-j $(nproc)"' /etc/makepkg.conf
+
 
 # Enable network services
 echo "Enabling network services for first boot"
