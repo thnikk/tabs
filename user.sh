@@ -10,4 +10,4 @@ git clone https://github.com/thnikk/dotfiles.git
 rm -rf dotfiles/.git
 cp -r dotfiles/. .
 # Enable mpd
-systemctl --user enable mpd
+# systemctl --user enable mpd
