@@ -22,7 +22,7 @@ echo "Installing system."
 pacman -Sy --noconfirm archlinux-keyring pacman-contrib
 rankmirrors -n 6 mirrorlist > /etc/pacman.d/mirrorlist
 
-pacstrap /mnt base base-devel linux linux-firmware neovim zsh dhcpcd xorg-server xorg xorg-xinit sudo noto-fonts git feh unzip unrar tmux xclip mpd mpc ncmpcpp networkmanager network-manager-applet arc-gtk-theme adobe-source-han-sans-otc-fonts i3-gaps bspwm sxhkd rofi dunst udiskie xorg-xsetroot xorg-xinput arandr ttf-fira-code nautilus kitty chromium yad
+pacstrap /mnt base base-devel linux linux-firmware neovim zsh dhcpcd xorg-server xorg xorg-xinit sudo noto-fonts git feh unzip unrar tmux xclip mpd mpc ncmpcpp networkmanager network-manager-applet arc-gtk-theme adobe-source-han-sans-otc-fonts i3-gaps bspwm sxhkd rofi dunst udiskie xorg-xsetroot xorg-xinput arandr ttf-fira-code nautilus kitty chromium yad pulseaudio
 echo "Creating FS Table."
 rm /mnt/etc/fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab
