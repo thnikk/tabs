@@ -20,9 +20,9 @@ clear
 # Creates boot, swap, and root partition.
 parted --script /dev/$DRIVE \
     mklabel gpt \
-    mkpart primary 1MiB 300MiB \
-    mkpart primary 300MiB 8300MiB \
-    mkpart primary 8300MiB 100% \
+    mkpart primary fat32 1MiB 300MiB \
+    mkpart primary linux-swap 300MiB 8300MiB \
+    mkpart primary ext4 8300MiB 100% \
     align-check min 1
 
 ROOT=/dev/$(echo $DRIVE)3
