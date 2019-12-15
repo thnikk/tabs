@@ -2,13 +2,13 @@
 ROOT=$(cat /rootPart | tr -d '\n')
 
 echo "Setting root password."
-passwd
+until passwd; do sleep 1; done
 # PROMPT FOR USERNAME
 echo "Please enter your desired username. "
 read USER
 useradd -mg users -G wheel,storage,power -s /usr/bin/zsh $USER
 echo "Setting user password."
-passwd $USER
+until passwd $USER; do sleep 1; done
 #visudo
 sudo sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
 # PROMPT FOR HOSTNAME
