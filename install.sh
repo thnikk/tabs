@@ -17,13 +17,14 @@ $(lsblk)
 3>&2 2>&1 1>&3) # show dialog and store output
 clear
 
+SWAPSIZE=$(($(cat /proc/meminfo | grep MemTotal | awk '{print int($2/1024)}')+300))
 # Creates boot, swap, and root partition.
 parted --script /dev/$DRIVE \
     mklabel gpt \
     mkpart primary fat32 1MiB 300MiB \
     set 1 esp on \
-    mkpart primary linux-swap 300MiB 8300MiB \
-    mkpart primary ext4 8300MiB 100% \
+    mkpart primary linux-swap 300MiB $SWAPSIZEMiB \
+    mkpart primary ext4 $SWAPSIZEMiB 100% \
     align-check min 1
 
 ROOT=/dev/$(echo $DRIVE)3
