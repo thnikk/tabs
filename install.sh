@@ -23,8 +23,8 @@ parted --script /dev/$DRIVE \
     mklabel gpt \
     mkpart primary fat32 1MiB 300MiB \
     set 1 esp on \
-    mkpart primary linux-swap 300MiB $SWAPSIZEMiB \
-    mkpart primary ext4 $SWAPSIZEMiB 100% \
+    mkpart primary linux-swap 300MiB "$SWAPSIZE"MiB \
+    mkpart primary ext4 "$SWAPSIZE"MiB 100% \
     align-check min 1
 
 ROOT=/dev/$(echo $DRIVE)3
