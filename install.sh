@@ -1,8 +1,29 @@
 #!/bin/bash
-lsblk
-echo "WARNING: THIS WILL OVERWRITE THE SELECTED DRIVE."
-echo "Enter drive selection without partition number."
-read DRIVE
+
+let i=0 # define counting variable
+W=() # define working array
+while read -r line; do # process file by file
+    let i=$i+1
+    W+=("$line" "[ ]")
+done < <( lsblk -nd --output NAME )
+DRIVE=$(dialog \
+--title "Drive selection" \
+--menu "WARNING: THIS WILL WIPE YOUR DRIVE. BE CAREFUL!
+Please select the drive you'd like to use:
+
+Output of lsblk:
+$(lsblk)
+" 0 0 0 "${W[@]}" \
+3>&2 2>&1 1>&3) # show dialog and store output
+clear
+
+# Creates boot, swap, and root partition.
+parted --script /dev/$DRIVE \
+    mklabel gpt \
+    mkpart primary 1MiB 300MiB \
+    mkpart primary 300MiB 8300MiB \
+    mkpart primary 8300MiB 100% \
+    align-check min 1
 
 ROOT=/dev/$(echo $DRIVE)3
 SWAP=/dev/$(echo $DRIVE)2
