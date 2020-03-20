@@ -11,6 +11,5 @@ git clone https://github.com/thnikk/dotfiles.git
 rm -rf dotfiles/.git
 sed 's/Operator Mono Medium/Fira Code Medium/g' dotfiles/.config/polybar/config
 sed 's/Operator Mono Medium/Fira Code Medium/g' dotfiles/.kitty/kitty.conf
+sed 's/Operator Mono Book/Fira Code Medium/g' dotfiles/.config/i3/config
 cp -r dotfiles/. .
-# Not working as system needs to reboot before services can be enabled
-#systemctl --user enable mpd.service
