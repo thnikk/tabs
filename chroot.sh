@@ -6,7 +6,7 @@ until passwd; do sleep 1; done
 # PROMPT FOR USERNAME
 echo "Please enter your desired username. "
 read USER
-useradd -mg users -G wheel,storage,power,video -s /usr/bin/zsh $USER
+useradd -mg users -G wheel,storage,power,libvirt,video -s /usr/bin/zsh $USER
 echo "Setting user password."
 until passwd $USER; do sleep 1; done
 #visudo
@@ -30,17 +30,14 @@ hwclock --systohc --utc
 # Set makeflags to core count -2
 sed -i '/MAKEFLAGS/c\MAKEFLAGS="-j $(( $(nproc)-2 ))"' /etc/makepkg.conf
 
-# Set up virtualization on desktop
-if [[ $HOSTNAME == *desktop* ]]; then
-sudo pacman -Sy libvirt qemu ovmf virt-manager dnsmasq ebtables dmidecode
+# Set up virtualization
 echo "nvram = [
 	"/usr/share/ovmf/x64/OVMF_CODE.fd:/usr/share/ovmf/x64/OVMF_VARS.fd"
 ]" >> /etc/qemu/qemu.conf
-sudo usermod -aG libvirt thnikk
-sudo systemctl enable libvirtd.service virtlogd.socket
-elif [[ $HOSTNAME == *vm* ]]; then
-    sudo pacman -S xf86-video-qxl nvidia-dkms
-fi
+systemctl enable libvirtd.service virtlogd.socket
+
+# Symlink nvim
+ln -s /usr/bin/nvim /bin/vim
 
 # Set tty font
 echo 'KEYMAP="us"' > /etc/vconsole.conf
