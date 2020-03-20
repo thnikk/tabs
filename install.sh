@@ -12,7 +12,7 @@ DRIVE=$(dialog \
 Please select the drive you'd like to use:
 
 Output of lsblk:
-$(lsblk)
+$(lsblk -n --output NAME,SIZE,MOUNTPOINT)
 " 0 0 0 "${W[@]}" \
 3>&2 2>&1 1>&3) # show dialog and store output
 clear
@@ -46,7 +46,7 @@ echo "Installing system."
 pacman -Sy --noconfirm archlinux-keyring pacman-contrib
 rankmirrors -n 6 mirrorlist > /etc/pacman.d/mirrorlist
 
-pacstrap /mnt base base-devel linux linux-firmware neovim zsh dhcpcd xorg-server xorg xorg-xinit sudo noto-fonts git feh unzip unrar tmux xclip mpd mpc ncmpcpp networkmanager network-manager-applet arc-gtk-theme adobe-source-han-sans-otc-fonts i3-gaps bspwm sxhkd rofi dunst udiskie xorg-xsetroot xorg-xinput arandr ttf-fira-code nautilus kitty chromium yad pulseaudio maim slop xclip openssh pamixer
+pacstrap /mnt base base-devel linux linux-firmware neovim zsh xorg-server xorg xorg-xinit sudo noto-fonts git feh unzip unrar tmux xclip mpd mpc ncmpcpp networkmanager network-manager-applet adobe-source-han-sans-otc-fonts i3-gaps rofi dunst udiskie xorg-xsetroot xorg-xinput arandr ttf-fira-code nautilus kitty chromium pulseaudio maim slop xclip openssh pamixer cronie noto-fonts-emoji terminus-font
 echo "Creating FS Table."
 genfstab -U -p /mnt > /mnt/etc/fstab
 echo "Copying install scripts to root fs and entering chroot."

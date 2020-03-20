@@ -6,7 +6,7 @@ until passwd; do sleep 1; done
 # PROMPT FOR USERNAME
 echo "Please enter your desired username. "
 read USER
-useradd -mg users -G wheel,storage,power -s /usr/bin/zsh $USER
+useradd -mg users -G wheel,storage,power,libvirt,video -s /usr/bin/zsh $USER
 echo "Setting user password."
 until passwd $USER; do sleep 1; done
 #visudo
@@ -27,14 +27,29 @@ echo "Setting timezone."
 ln -s /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 # Set clock to utc
 hwclock --systohc --utc
-# Set makeflags
-sed -i '/MAKEFLAGS/c\MAKEFLAGS="-j $(nproc)"' /etc/makepkg.conf
+# Set makeflags to core count -2
+sed -i '/MAKEFLAGS/c\MAKEFLAGS="-j $(( $(nproc)-2 ))"' /etc/makepkg.conf
 
+# Set up virtualization if server or desktop
+if [ "$HOSTNAME" = *desktop* ] || [ "$HOSTNAME" = *server* ]; then
+sudo pacman -Sy --noconfirm libvirt qemu ovmf virt-manager dnsmasq ebtables dmidecode
+echo "nvram = [
+	"/usr/share/ovmf/x64/OVMF_CODE.fd:/usr/share/ovmf/x64/OVMF_VARS.fd"
+]" >> /etc/qemu/qemu.conf
+sudo systemctl enable --now libvirtd.service virtlogd.socket
+fi
 
-# Enable network services
-echo "Enabling network services for first boot"
+# Set tty font
+echo 'KEYMAP="us"' > /etc/vconsole.conf
+echo 'FONT="ter-v32b"' >> /etc/vconsole.conf
+
+# Enable services
+echo "Enabling services for first boot"
 systemctl enable NetworkManager
-systemctl enable dhcpcd
+systemctl enable cronie
+
+# Set up basic crontab with pacman repo sync
+(crontab -l 2>/dev/null; echo "@hourly pacman -Sy") | crontab -
 
 # Install systemd-boot
 bootctl --path=/boot install
@@ -48,7 +63,7 @@ echo "editor 0" >> /boot/loader/loader.conf
 echo "title Arch Linux" > /boot/loader/entries/arch.conf
 echo "linux /vmlinuz-linux" >> /boot/loader/entries/arch.conf
 echo "initrd /initramfs-linux.img" >> /boot/loader/entries/arch.conf
-echo "options root=PARTUUID=$(blkid -s PARTUUID -o value $ROOT | tr -d '\n') rw" >> /boot/loader/entries/arch.conf
+echo "options root=UUID=$(blkid -s PARTUUID -o value $ROOT | tr -d '\n') rw" >> /boot/loader/entries/arch.conf
 
 chmod +x /user.sh
 su -c "/user.sh" - $USER
