@@ -10,4 +10,5 @@ cd ~
 git clone https://github.com/thnikk/dotfiles.git
 rm -rf dotfiles/.git
 cp -r dotfiles/. .
-systemctl --user enable mpd.service
+# Not working as system needs to reboot before services can be enabled
+#systemctl --user enable mpd.service

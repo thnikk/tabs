@@ -30,14 +30,16 @@ hwclock --systohc --utc
 # Set makeflags to core count -2
 sed -i '/MAKEFLAGS/c\MAKEFLAGS="-j $(( $(nproc)-2 ))"' /etc/makepkg.conf
 
-# Set up virtualization if server or desktop
-if [ "$HOSTNAME" = *desktop* ] || [ "$HOSTNAME" = *server* ]; then
+# Set up virtualization on desktop
+if [[ $HOSTNAME == *desktop* ]]; then
 sudo pacman -Sy libvirt qemu ovmf virt-manager dnsmasq ebtables dmidecode
 echo "nvram = [
 	"/usr/share/ovmf/x64/OVMF_CODE.fd:/usr/share/ovmf/x64/OVMF_VARS.fd"
 ]" >> /etc/qemu/qemu.conf
 sudo usermod -aG libvirt thnikk
 sudo systemctl enable libvirtd.service virtlogd.socket
+elif [[ $HOSTNAME == *vm* ]]; then
+    sudo pacman -S xf86-video-qxl nvidia-dkms
 fi
 
 # Set tty font
@@ -64,7 +66,7 @@ echo "editor 0" >> /boot/loader/loader.conf
 echo "title Arch Linux" > /boot/loader/entries/arch.conf
 echo "linux /vmlinuz-linux" >> /boot/loader/entries/arch.conf
 echo "initrd /initramfs-linux.img" >> /boot/loader/entries/arch.conf
-echo "options root=UUID=$(blkid -s PARTUUID -o value $ROOT | tr -d '\n') rw" >> /boot/loader/entries/arch.conf
+echo "options root=PARTUUID=$(blkid -s PARTUUID -o value $ROOT | tr -d '\n') rw" >> /boot/loader/entries/arch.conf
 
 chmod +x /user.sh
 su -c "/user.sh" - $USER
