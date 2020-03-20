@@ -6,7 +6,7 @@ until passwd; do sleep 1; done
 # PROMPT FOR USERNAME
 echo "Please enter your desired username. "
 read USER
-useradd -mg users -G wheel,storage,power,libvirt,video -s /usr/bin/zsh $USER
+useradd -mg users -G wheel,storage,power,video -s /usr/bin/zsh $USER
 echo "Setting user password."
 until passwd $USER; do sleep 1; done
 #visudo
@@ -32,11 +32,12 @@ sed -i '/MAKEFLAGS/c\MAKEFLAGS="-j $(( $(nproc)-2 ))"' /etc/makepkg.conf
 
 # Set up virtualization if server or desktop
 if [ "$HOSTNAME" = *desktop* ] || [ "$HOSTNAME" = *server* ]; then
-sudo pacman -Sy --noconfirm libvirt qemu ovmf virt-manager dnsmasq ebtables dmidecode
+sudo pacman -Sy libvirt qemu ovmf virt-manager dnsmasq ebtables dmidecode
 echo "nvram = [
 	"/usr/share/ovmf/x64/OVMF_CODE.fd:/usr/share/ovmf/x64/OVMF_VARS.fd"
 ]" >> /etc/qemu/qemu.conf
-sudo systemctl enable --now libvirtd.service virtlogd.socket
+sudo usermod -aG libvirt thnikk
+sudo systemctl enable libvirtd.service virtlogd.socket
 fi
 
 # Set tty font
