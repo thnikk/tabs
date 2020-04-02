@@ -1,0 +1,86 @@
+# Needed for base install
+base
+base-devel
+linux
+linux-firmware
+linux-headers
+sudo
+
+# X server
+xorg-server
+xorg
+xorg-xinit
+xorg-xsetroot
+xorg-xinput
+arandr
+xclip
+
+# Text editor
+neovim
+
+# Terminal
+kitty
+
+# Shell
+zsh
+
+# Web browser
+chromium
+
+# Audio
+mpd
+mpc
+ncmpcpp
+pulseaudio
+pamixer
+
+# Images
+feh
+sxiv
+maim
+slop
+
+# Networking
+networkmanager
+network-manager-applet
+openssh
+
+# Fonts
+adobe-source-han-sans-otc-fonts
+noto-fonts
+ttf-fira-code
+terminus-font
+noto-fonts-emoji
+
+# Archive management
+unzip
+unrar
+
+# System management
+udiskie
+cronie
+
+# WM
+i3-gaps
+rofi
+dunst
+lxsession
+picom
+
+# Theme
+papirus-icon-theme
+lxappearance
+
+# Virtualization
+libvirt
+qemu
+ovmf
+virt-manager
+dnsmasq
+ebtables
+dmidecode
+xf86-video-qxl
+nvidia-dkms
+
+# Graphics driver
+nvidia-dkms

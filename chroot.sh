@@ -9,8 +9,8 @@ read USER
 useradd -mg users -G wheel,storage,power,libvirt,video -s /usr/bin/zsh $USER
 echo "Setting user password."
 until passwd $USER; do sleep 1; done
-#visudo
-sudo sed --in-place 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
+# Set up sudoers
+sudo sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
 # PROMPT FOR HOSTNAME
 echo "Please enter your desired hostname for the machine: "
 read HOSTNAME
@@ -53,12 +53,10 @@ systemctl enable cronie
 
 # Install systemd-boot
 bootctl --path=/boot install
-
 # Overwrite file if it exists and append other lines
 echo "default arch" > /boot/loader/loader.conf
 echo "timeout 1" >> /boot/loader/loader.conf
 echo "editor 0" >> /boot/loader/loader.conf
-
 # Overwrite file if it exists and append other lines
 echo "title Arch Linux" > /boot/loader/entries/arch.conf
 echo "linux /vmlinuz-linux" >> /boot/loader/entries/arch.conf

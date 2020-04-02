@@ -46,7 +46,8 @@ echo "Installing system."
 pacman -Sy --noconfirm archlinux-keyring pacman-contrib
 rankmirrors -n 6 mirrorlist > /etc/pacman.d/mirrorlist
 
-pacstrap /mnt base base-devel linux linux-firmware linux-headers neovim zsh xorg-server xorg xorg-xinit sudo noto-fonts git feh unzip unrar tmux xclip mpd mpc ncmpcpp networkmanager network-manager-applet adobe-source-han-sans-otc-fonts i3-gaps rofi dunst udiskie xorg-xsetroot xorg-xinput arandr ttf-fira-code nautilus kitty chromium pulseaudio maim slop xclip openssh pamixer cronie noto-fonts-emoji terminus-font libvirt qemu ovmf virt-manager dnsmasq ebtables dmidecode xf86-video-qxl nvidia-dkms picom
+# Install packages from file
+pacstrap /mnt $(grep -v "#" packages | tr '\n' ' ')
 echo "Creating FS Table."
 genfstab -U -p /mnt > /mnt/etc/fstab
 echo "Copying install scripts to root fs and entering chroot."
