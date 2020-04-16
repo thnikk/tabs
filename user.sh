@@ -4,7 +4,7 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 # Install aur packages
-yay -S --noconfirm brave-bin polybar ttf-material-design-icons antigen-git mimeo xdg-utils-mimeo
+yay -S --noconfirm polybar ttf-material-design-icons antigen-git i3lock-fancy-rapid-git breeze-snow-cursor-theme
 # Install dotfiles
 cd ~
 git clone https://github.com/thnikk/dotfiles.git

@@ -64,12 +64,15 @@ cronie
 i3-gaps
 rofi
 dunst
-lxsession
 picom
+sxhkd
+bspwm
+
+# Polkit (mate because everything else spams desktop files for default programs.)
+mate-polkit
 
 # Theme
 papirus-icon-theme
-lxappearance
 
 # Virtualization
 libvirt
