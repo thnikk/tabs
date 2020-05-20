@@ -27,6 +27,9 @@ zsh
 # Web browser
 chromium
 
+# File manager
+lf
+
 # Audio
 mpd
 mpc
@@ -59,6 +62,7 @@ unrar
 # System management
 udiskie
 cronie
+stow
 
 # WM
 i3-gaps
