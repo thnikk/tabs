@@ -27,9 +27,6 @@ zsh
 # Web browser
 chromium
 
-# File manager
-lf
-
 # Audio
 mpd
 mpc
