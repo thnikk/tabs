@@ -24,6 +24,7 @@ kitty
 
 # Shell
 zsh
+dash
 
 # Web browser
 firefox
@@ -52,6 +53,7 @@ noto-fonts
 ttf-fira-code
 terminus-font
 noto-fonts-emoji
+ttf-font-awesome
 
 # Archive management
 unzip

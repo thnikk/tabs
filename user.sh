@@ -1,10 +1,11 @@
 #!/bin/bash
 # Install yay
+# (Maybe want to replace this with paru)
 git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 # Install aur packages
-yay -S --noconfirm polybar ttf-material-design-icons i3lock-fancy-rapid-git breeze-snow-cursor-theme autotiling gohufont lf
+yay -S --noconfirm polybar i3lock-fancy-rapid-git breeze-snow-cursor-theme autotiling lf shellcheck-bin
 # Install dotfiles
 cd ~
 git clone https://github.com/thnikk/dotfiles.git .dot
