@@ -47,6 +47,7 @@ slop
 networkmanager
 network-manager-applet
 openssh
+wget
 
 # Fonts
 adobe-source-han-sans-otc-fonts
