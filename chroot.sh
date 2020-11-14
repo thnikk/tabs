@@ -5,15 +5,15 @@ echo "Setting root password."
 until passwd; do sleep 1; done
 # PROMPT FOR USERNAME
 echo "Please enter your desired username. "
-read USER
-useradd -mg users -G wheel,storage,power,libvirt,video -s /usr/bin/zsh $USER
+read -r USER
+useradd -mg users -G wheel,storage,power,libvirt,video -s /usr/bin/zsh "$USER"
 echo "Setting user password."
-until passwd $USER; do sleep 1; done
+until passwd "$USER"; do sleep 1; done
 # Set up sudoers
 sudo sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
 # PROMPT FOR HOSTNAME
 echo "Please enter your desired hostname for the machine: "
-read HOSTNAME
+read -r HOSTNAME
 echo "$HOSTNAME" > /etc/hostname
 # Set locale stuff
 echo "Setting locale."
@@ -31,17 +31,13 @@ hwclock --systohc --utc
 sed -i '/MAKEFLAGS/c\MAKEFLAGS="-j $(( $(nproc)-2 ))"' /etc/makepkg.conf
 
 # Set up virtualization
-echo "nvram = [
+echo 'nvram = [
 	"/usr/share/ovmf/x64/OVMF_CODE.fd:/usr/share/ovmf/x64/OVMF_VARS.fd"
-]" >> /etc/qemu/qemu.conf
+]' >> /etc/qemu/qemu.conf
 systemctl enable libvirtd.service virtlogd.socket
 
 # Symlink nvim
 ln -s /usr/bin/nvim /bin/vim
-
-# Set tty font
-echo 'KEYMAP="us"' > /etc/vconsole.conf
-echo 'FONT="ter-v32b"' >> /etc/vconsole.conf
 
 # Enable services
 echo "Enabling services for first boot"
