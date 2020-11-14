@@ -15,6 +15,7 @@ xorg-xsetroot
 xorg-xinput
 arandr
 xclip
+xdotool
 
 # Text editor
 neovim
