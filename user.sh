@@ -5,6 +5,8 @@ cd paru
 makepkg -si
 # Install aur packages
 paru -S --noconfirm polybar breeze-snow-cursor-theme autotiling lf shellcheck-bin
+# Install through pip to reduce dependencies
+pip install fontawesome
 # Install dotfiles
 cd ~
 git clone --recursive https://github.com/thnikk/dotfiles.git .dot
