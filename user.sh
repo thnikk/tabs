@@ -7,7 +7,7 @@ makepkg -si
 paru -S --noconfirm polybar breeze-snow-cursor-theme autotiling lf shellcheck-bin
 # Install dotfiles
 cd ~
-git clone https://github.com/thnikk/dotfiles.git .dot
+git clone --recursive https://github.com/thnikk/dotfiles.git .dot
 cd .dot
 # Replace all references to Operator Mono with Firacode
 sed -i 's/Operator Mono Medium/Fira Code Medium/g' polybar/.config/polybar/config
@@ -18,6 +18,5 @@ chmod +x stowAll.sh
 ./stowAll.sh
 # Return home
 cd ~
-ln -s .profile .zprofile
 # Cleanup
 rm -rf paru
