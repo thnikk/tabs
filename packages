@@ -16,6 +16,7 @@ xorg-xinput
 arandr
 xclip
 xdotool
+lxappearance-gtk3
 
 # Text editor
 neovim
