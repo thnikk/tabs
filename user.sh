@@ -4,7 +4,7 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
 # Install aur packages
-yay -S --noconfirm polybar breeze-snow-cursor-theme autotiling lf shellcheck-bin
+paru -S --noconfirm polybar breeze-snow-cursor-theme autotiling lf shellcheck-bin
 # Install dotfiles
 cd ~
 git clone https://github.com/thnikk/dotfiles.git .dot
