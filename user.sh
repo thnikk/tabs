@@ -4,7 +4,7 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
 # Install aur packages
-yay -S --noconfirm polybar i3lock-fancy-rapid-git breeze-snow-cursor-theme autotiling lf shellcheck-bin
+yay -S --noconfirm polybar breeze-snow-cursor-theme autotiling lf shellcheck-bin
 # Install dotfiles
 cd ~
 git clone https://github.com/thnikk/dotfiles.git .dot
@@ -20,4 +20,4 @@ chmod +x stowAll.sh
 cd ~
 ln -s .profile .zprofile
 # Cleanup
-rm -rf yay
+rm -rf paru
