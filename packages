@@ -17,7 +17,7 @@ arandr
 xclip
 xdotool
 lxappearance-gtk3
-conk
+conky
 
 # Language
 ibus-anthy
@@ -78,7 +78,6 @@ stow
 i3-gaps
 rofi
 dunst
-notify-send
 sxhkd
 bspwm
 
