@@ -44,6 +44,9 @@ sxiv
 maim
 slop
 
+# File manager
+nemo
+
 # Networking
 networkmanager
 network-manager-applet
