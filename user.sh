@@ -4,7 +4,7 @@ git clone https://aur.archlinux.org/paru.git
 cd paru
 makepkg -si
 # Install aur packages
-paru -S --noconfirm polybar breeze-snow-cursor-theme autotiling lf shellcheck-bin picom-ibhagwan-git mpv-git
+paru -S --noconfirm polybar breeze-snow-cursor-theme autotiling shellcheck-bin picom-ibhagwan-git mpv-git flat-remix
 # Install through pip to reduce dependencies
 pip install fontawesome
 
