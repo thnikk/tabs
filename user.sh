@@ -33,3 +33,12 @@ mkdir -p ~/Pictures/Screenshots
 mkdir -p ~/Videos
 mkdir -p ~/Documents
 mkdir -p ~/.local/bin
+
+# Add anthy to engines
+gsettings set org.freedesktop.ibus.general preload-engines "['xkb:us::eng', 'anthy']"
+# (this one may be unnecessary)
+gsettings set org.freedesktop.ibus.general engines-order "['xkb:us::eng', 'anthy']"
+# Remove keybind
+gsettings set org.freedesktop.ibus.general.hotkey next-engine "[]"
+# Change default input mode to hiragana
+gsettings set org.freedesktop.ibus.engine.anthy.common input-mode 0
