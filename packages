@@ -74,7 +74,6 @@ stow
 i3-gaps
 rofi
 dunst
-dunstify
 notify-send
 sxhkd
 bspwm
