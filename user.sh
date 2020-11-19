@@ -42,3 +42,5 @@ gsettings set org.freedesktop.ibus.general engines-order "['xkb:us::eng', 'anthy
 gsettings set org.freedesktop.ibus.general.hotkey next-engine "[]"
 # Change default input mode to hiragana
 gsettings set org.freedesktop.ibus.engine.anthy.common input-mode 0
+# Disable tray icon (preferences still accessible as application)
+gsettings set org.freedesktop.ibus.panel show-icon-on-systray false
