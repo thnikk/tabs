@@ -18,6 +18,9 @@ xclip
 xdotool
 lxappearance-gtk3
 
+# Language
+ibus-anthy
+
 # Text editor
 neovim
 
@@ -98,6 +101,9 @@ nvidia-dkms
 
 # Graphics driver
 nvidia-dkms
+
+# Audio
+pavucontrol
 
 # Python
 python-pip

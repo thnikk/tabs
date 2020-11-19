@@ -32,3 +32,4 @@ mkdir -p ~/.cache
 mkdir -p ~/Pictures/Screenshots
 mkdir -p ~/Videos
 mkdir -p ~/Documents
+mkdir -p ~/.local/bin
