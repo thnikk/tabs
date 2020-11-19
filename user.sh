@@ -26,3 +26,9 @@ chmod +x stowAll.sh
 cd ~
 # Cleanup
 rm -rf paru
+
+# Make some folders
+mkdir -p ~/.cache
+mkdir -p ~/Pictures/Screenshots
+mkdir -p ~/Videos
+mkdir -p ~/Documents
