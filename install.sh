@@ -38,7 +38,7 @@ pacman -Sy --noconfirm archlinux-keyring pacman-contrib
 rankmirrors -n 6 mirrorlist > /etc/pacman.d/mirrorlist
 
 # Install packages from file
-pacstrap /mnt "$(grep -v "#" packages | tr '\n' ' ')"
+pacstrap /mnt $(grep -v "#" packages | tr '\n' ' ')
 echo "Creating FS Table."
 genfstab -U -p /mnt > /mnt/etc/fstab
 echo "Copying install scripts to root fs and entering chroot."
