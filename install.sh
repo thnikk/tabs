@@ -5,9 +5,9 @@ echo -n "Valid drive names are:"
 lsblk -nd --output NAME | sed -z 's/\n/, /g'
 read -r DRIVE
 
-SWAPSIZE=$(($( grep MemTotal /proc/meminfo | awk '{print int($2/1024)}')+300))
+SWAPSIZE=$(($(cat /proc/meminfo | grep MemTotal | awk '{print int($2/1024)}')+300))
 # Creates boot, swap, and root partition.
-parted --script /dev/"$DRIVE" \
+parted --script /dev/$DRIVE \
     mklabel gpt \
     mkpart primary fat32 1MiB 300MiB \
     set 1 esp on \
@@ -15,27 +15,27 @@ parted --script /dev/"$DRIVE" \
     mkpart primary ext4 "$SWAPSIZE"MiB 100% \
     align-check min 1
 
-ROOT=/dev/"$DRIVE"3
-SWAP=/dev/"$DRIVE"2
-BOOT=/dev/"$DRIVE"1
+ROOT=/dev/$(echo $DRIVE)3
+SWAP=/dev/$(echo $DRIVE)2
+BOOT=/dev/$(echo $DRIVE)1
 
 echo "Formatting partitions."
-mkfs.ext4 "$ROOT"
-mkswap "$SWAP"
-mkfs.fat -F32 "$BOOT"
+mkfs.ext4 $ROOT
+mkswap $SWAP
+mkfs.fat -F32 $BOOT
 
 echo "Mounting partitions."
-mount "$ROOT" /mnt
+mount $ROOT /mnt
 mkdir /mnt/boot
-mount "$BOOT" /mnt/boot
-swapon "$SWAP"
+mount $BOOT /mnt/boot
+swapon $SWAP
 
 echo "Installing system."
 pacman -Sy --noconfirm archlinux-keyring pacman-contrib
 rankmirrors -n 6 mirrorlist > /etc/pacman.d/mirrorlist
 
 # Install packages from file
-pacstrap /mnt "$(grep -v "#" packages | tr '\n' ' ')"
+pacstrap /mnt $(grep -v "#" packages | tr '\n' ' ')
 echo "Creating FS Table."
 genfstab -U -p /mnt > /mnt/etc/fstab
 echo "Copying install scripts to root fs and entering chroot."
