@@ -17,6 +17,7 @@ arandr
 xclip
 xdotool
 lxappearance-gtk3
+conk
 
 # Language
 ibus-anthy

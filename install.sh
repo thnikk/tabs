@@ -2,7 +2,7 @@
 lsblk
 echo "Enter the drive name you'd like to format. THIS WILL FORMAT THE WHOLE DRIVE."
 echo -n "Valid drive names are:"
-lsblk -nd --output NAME | sed -z 's/\n/, /g'
+lsblk -nd --output NAME
 read -r DRIVE
 
 SWAPSIZE=$(($(cat /proc/meminfo | grep MemTotal | awk '{print int($2/1024)}')+300))
@@ -20,24 +20,24 @@ SWAP=/dev/$(echo $DRIVE)2
 BOOT=/dev/$(echo $DRIVE)1
 
 echo "Formatting partitions."
-mkfs.ext4 $ROOT
-mkswap $SWAP
-mkfs.fat -F32 $BOOT
+mkfs.ext4 $ROOT > /dev/null
+mkswap $SWAP > /dev/null
+mkfs.fat -F32 $BOOT > /dev/null
 
 echo "Mounting partitions."
-mount $ROOT /mnt
-mkdir /mnt/boot
-mount $BOOT /mnt/boot
-swapon $SWAP
+mount $ROOT /mnt > /dev/null
+mkdir /mnt/boot > /dev/null
+mount $BOOT /mnt/boot > /dev/null
+swapon $SWAP > /dev/null
 
 echo "Installing system."
-pacman -Sy --noconfirm archlinux-keyring pacman-contrib
+pacman -Sy --noconfirm archlinux-keyring pacman-contrib >/dev/null
 rankmirrors -n 6 mirrorlist > /etc/pacman.d/mirrorlist
 
 # Install packages from file
-pacstrap /mnt $(grep -v "#" packages | tr '\n' ' ')
+pacstrap /mnt $(grep -v "#" packages | tr '\n' ' ') >/dev/null
 echo "Creating FS Table."
-genfstab -U -p /mnt > /mnt/etc/fstab
+genfstab -U -p /mnt > /mnt/etc/fstab >/dev/null
 echo "Copying install scripts to root fs and entering chroot."
 echo "$ROOT" > /mnt/rootPart
 cp chroot.sh /mnt && cp user.sh /mnt && arch-chroot /mnt bash chroot.sh && cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
