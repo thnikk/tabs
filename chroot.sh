@@ -10,7 +10,7 @@ useradd -mg users -G wheel,storage,power,libvirt,video -s /usr/bin/zsh "$USER"
 echo "Setting user password."
 until passwd "$USER"; do sleep 1; done
 # Set up sudoers
-sudo sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
+sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL)\s\+NOPASSWD:\s\+ALL\)/\1/' /etc/sudoers
 # PROMPT FOR HOSTNAME
 echo "Please enter your desired hostname for the machine: "
 read -r HOSTNAME
@@ -50,14 +50,8 @@ systemctl enable cronie
 # Install systemd-boot
 bootctl --path=/boot install
 # Overwrite file if it exists and append other lines
-echo "default arch" > /boot/loader/loader.conf
-echo "timeout 1" >> /boot/loader/loader.conf
-echo "editor 0" >> /boot/loader/loader.conf
-# Overwrite file if it exists and append other lines
-echo "title Arch Linux" > /boot/loader/entries/arch.conf
-echo "linux /vmlinuz-linux" >> /boot/loader/entries/arch.conf
-echo "initrd /initramfs-linux.img" >> /boot/loader/entries/arch.conf
-echo "options root=PARTUUID=$(blkid -s PARTUUID -o value $ROOT | tr -d '\n') rw" >> /boot/loader/entries/arch.conf
+{ echo "default arch"; echo "timeout 1"; echo "editor 0"; } > /boot/loader/loader.conf
+{ echo "title Arch Linux"; echo "linux /vmlinuz-linux"; echo "initrd /initramfs-linux.img"; echo "options root=PARTUUID=$(blkid -s PARTUUID -o value "$ROOT" | tr -d '\n') rw"; } > /boot/loader/entries/arch.conf
 
 chmod +x /user.sh
 su -c "/user.sh" - $USER
