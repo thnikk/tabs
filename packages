@@ -19,6 +19,16 @@ xdotool
 lxappearance-gtk3
 conky
 
+# Sway
+sway
+waybar
+wlroots
+xdg-desktop-portal-wlr
+xdg-desktop-portal
+mako
+swayidle
+swaylock
+
 # Mail
 isync
 msmtp
