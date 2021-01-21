@@ -4,7 +4,8 @@ git clone https://aur.archlinux.org/paru-bin.git
 cd paru-bin
 makepkg -si
 # Install aur packages
-paru -S --noconfirm polybar breeze-snow-cursor-theme autotiling shellcheck-bin picom-ibhagwan-git mpv-git flat-remix
+#paru -S --noconfirm polybar breeze-snow-cursor-theme autotiling shellcheck-bin picom-ibhagwan-git mpv-git flat-remix flat-remix-gtk
+paru -S --noconfirm breeze-snow-cursor-theme autotiling shellcheck-bin mpv-git flat-remix flat-remix-gtk
 # Install through pip to reduce dependencies
 pip install fontawesome
 
@@ -20,8 +21,8 @@ cd ~
 git clone --recursive https://github.com/thnikk/dotfiles.git .dot
 cd .dot
 # Stow all
-chmod +x stowAll.sh
-./stowAll.sh
+chmod +x stow_all.sh
+./stow_all.sh
 # Return home
 cd ~
 # Cleanup

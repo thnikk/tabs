@@ -8,16 +8,18 @@ sudo
 git
 
 # X server
-xorg-server
-xorg
-xorg-xinit
-xorg-xsetroot
-xorg-xinput
-arandr
-xclip
-xdotool
-lxappearance-gtk3
-conky
+#xorg-server
+#xorg
+#xorg-xinit
+#xorg-xsetroot
+#xorg-xinput
+#arandr
+#xclip
+#xdotool
+#lxappearance-gtk3
+#conky
+#maim
+#slop
 
 # Sway
 sway
@@ -49,6 +51,8 @@ dash
 
 # Web browser
 firefox
+qutebrowser
+chromium
 
 # Audio
 mpd
@@ -60,12 +64,11 @@ pamixer
 # Images
 feh
 sxiv
-maim
-slop
 imagemagick
 
 # PDF
 zathura
+zathura-pdf-mupdf
 
 # Communication
 discord
@@ -76,7 +79,7 @@ nemo
 
 # Networking
 networkmanager
-network-manager-applet
+#network-manager-applet
 openssh
 wget
 avahi
@@ -111,22 +114,21 @@ sxhkd
 mate-polkit
 
 # Theme
-papirus-icon-theme
-adapta-gtk-theme
+#papirus-icon-theme
+#adapta-gtk-theme
 
 # Virtualization
-libvirt
-qemu
-ovmf
-virt-manager
-dnsmasq
-ebtables
-dmidecode
-xf86-video-qxl
-nvidia-dkms
+#libvirt
+#qemu
+#ovmf
+#virt-manager
+#dnsmasq
+#ebtables
+#dmidecode
+#xf86-video-qxl
 
 # Graphics driver
-nvidia-dkms
+xf86-video-nouveau
 
 # Audio
 pavucontrol

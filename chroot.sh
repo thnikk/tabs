@@ -6,7 +6,7 @@ until passwd; do sleep 1; done
 # PROMPT FOR USERNAME
 echo "Please enter your desired username. "
 read -r USER
-useradd -mg users -G wheel,storage,power,libvirt,video -s /usr/bin/zsh "$USER"
+useradd -mg users -G wheel,storage,power,video -s /usr/bin/zsh "$USER"
 echo "Setting user password."
 until passwd "$USER"; do sleep 1; done
 # Set up sudoers
@@ -31,10 +31,10 @@ hwclock --systohc --utc
 sed -i '/MAKEFLAGS/c\MAKEFLAGS="-j $(( $(nproc)-2 ))"' /etc/makepkg.conf
 
 # Set up virtualization
-echo 'nvram = [
-	"/usr/share/ovmf/x64/OVMF_CODE.fd:/usr/share/ovmf/x64/OVMF_VARS.fd"
-]' >> /etc/qemu/qemu.conf
-systemctl enable libvirtd.service virtlogd.socket
+#echo 'nvram = [
+	#"/usr/share/ovmf/x64/OVMF_CODE.fd:/usr/share/ovmf/x64/OVMF_VARS.fd"
+#]' >> /etc/qemu/qemu.conf
+#systemctl enable libvirtd.service virtlogd.socket
 
 # Symlink nvim
 ln -s /usr/bin/nvim /bin/vim
